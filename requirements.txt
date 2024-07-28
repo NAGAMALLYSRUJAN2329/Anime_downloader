@@ -2,3 +2,4 @@ beautifulsoup4
 streamlit
 selenium
 requests
+tqdm
