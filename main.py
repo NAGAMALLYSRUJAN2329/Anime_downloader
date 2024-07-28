@@ -3,6 +3,9 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
+
 import time
 import os
 import tqdm
@@ -64,7 +67,11 @@ def get_link(url):
     return download_li
 
 def main(base_url, resolution, last_ep_num, download_dir):
-    driver = webdriver.Firefox()
+    options = webdriver.FirefoxOptions()
+    options.add_argument('--headless')  # Enable headless mode
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=options)
     # driver.get('http://selenium.dev/')
     base_url = base_url.replace('category/', '')
     episodes_to_download = [i for i in range(1, last_ep_num+1)]

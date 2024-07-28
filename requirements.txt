@@ -3,3 +3,4 @@ streamlit
 selenium
 requests
 tqdm
+webdriver_manager
