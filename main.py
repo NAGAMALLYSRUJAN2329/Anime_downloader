@@ -67,15 +67,15 @@ def get_link(url):
     return download_li
 
 def main(base_url, resolution, last_ep_num, download_dir):
-    options = webdriver.FirefoxOptions()
-    # options = webdriver.ChromeOptions()
+    # options = webdriver.FirefoxOptions()
+    options = webdriver.ChromeOptions()
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
-    driver = webdriver.Firefox(options=options)
-    # from selenium.webdriver.chrome.service import Service as ChromeService
-    # from webdriver_manager.chrome import ChromeDriverManager
-    # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+    # driver = webdriver.Firefox(options=options)
+    from selenium.webdriver.chrome.service import Service as ChromeService
+    from webdriver_manager.chrome import ChromeDriverManager
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     # driver.get('http://selenium.dev/')
     base_url = base_url.replace('category/', '')
     episodes_to_download = [i for i in range(1, last_ep_num+1)]
